@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Title</title>
+    <script>
+        $(document).ready(function () {
+            listing();
+        });
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/api/list",
+                data: {},
+                success: function (response) {
+                        let foods = response['foods'];
+                        for (let i = 0; i < foods.length; i++) {
+                            let img = foods[i]['img'];
+                            //console.log(img)
+                            document.getElementById("food01").src = img;
+                        }
+                }
+            })
+        }
+    </script>
+
+    <style>
+        body {
+            background-image: url("https://blog.kakaocdn.net/dn/cbT0NM/btritMKQPFQ/3M0IvW7erASCWGh5l6atk0/img.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .food {
+            width: 20px;
+            height: auto;
+            /*background: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMDhfMjU0%2FMDAxNjMzNjY5MjU2MjIx.rO4BKmaHRIp7QcOeI_a0zE8hlMTyfQOlMQzmH6eLRBUg.dLtO23OpeDOEUiXxtvd0xXoM03pAzYvgW_zB6h539tIg.JPEG.smh567958%2F1633669235078.jpg&type=sc960_832") no-repeat;*/
+            /*background-size: contain;*/
+            padding: 0;
+            margin-top: 200px;
+
+            /*position: absolute;*/
+            /*bottom: 20%;*/
+            /*left: 10%;*/
+            /*margin-top: ;*/
+        }
+
+        .food2 {
+            position: relative;
+            bottom: 40%;
+            right: 10%;
+        }
+    </style>
+
+</head>
+<body>
+<form class="food" action="http://www.naver.com">
+    <input id="food01"
+           type="image"
+           src=""
+           value="음식1">
+</form>
+<form class="food2" action="http://www.daum.net">
+    <input type="button" src="" value="음식2">
+</form>
+</body>
+</html>
