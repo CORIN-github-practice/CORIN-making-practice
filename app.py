@@ -15,6 +15,7 @@ def home():
 
 
 # API 역할을 하는 부분
+# 음식 리스트 가져오기
 @app.route('/api/list', methods=['GET'])
 def show_foods():
     show_food = list(db.korfoodlist.find({}, {'_id': False}))
