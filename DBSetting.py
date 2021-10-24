@@ -52,28 +52,22 @@ db = client.dbsparta
 #     db.mystar.insert_one(doc)
 #     print('완료!', name)
 
-# food DB에 넣기
-def insert_food():
-    img = 'static/kor/kor01.jpg'
-    name = img[11:16]
-    print(name)
+# 나라별 푸드 food DB에 넣기
+def insert_food(country):
+    for i in range(1, 17):
+        img = 'static/'+country+'/'+country+' ('+str(i)+').jpg'
+        doc = {
+            'img': img,
+            'round': 1,
+        }
+        db.korfoodlist.insert_one(doc)
 
-    doc = {
-        'name': name,
-        'img': img,
-        'round': 1,
-    }
-
-    db.korfoodlist.insert_one(doc)
-    print('완료!', name)
-
-# 기존 mystar 콜렉션을 삭제하고, 출처 url들을 가져온 후, 크롤링하여 DB에 저장합니다.
+# 기존 korfoodlist 콜렉션을 삭제하고, 새로 DB에 저장합니다.
 def insert_all():
-    db.korfoodlist.drop()  # mystar 콜렉션을 모두 지워줍니다.
-    # for url in urls:
-    #     insert_star(url)
-    insert_food()
+    db.korfoodlist.drop()  # korfoodlist 콜렉션을 모두 지워줍니다.
+    country = 'kor'
+    insert_food(country)
 
 
-### 실행하기
+# 실행하기
 insert_all()
