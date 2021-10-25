@@ -1,0 +1,99 @@
+
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <meta charset="utf-8" >
+    <style>
+        *{font-family: 'Black Han Sans', sans-serif;}
+    .container {
+      position: relative;
+    }
+
+    .container img {
+      width: 100%;
+      height: auto;
+    }
+
+    .container .btn1 {
+        position: absolute;
+        top: 50%;
+        left: 75%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: white;
+        color: black;
+        font-size: 50px;
+        padding: 12px 24px;
+        border-width: medium;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: bottom;
+        width: 300px;
+    }
+    .container .btn2 {
+      position: absolute;
+      top: 62%;
+      left: 75%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      background-color: white;
+      color: black;
+      font-size: 50px;
+      padding: 12px 24px;
+        border-width: medium;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: bottom;
+        width: 300px;
+    }
+    .container .btn3 {
+      position: absolute;
+      top: 74%;
+      left: 75%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      background-color: white;
+      color: black;
+      font-size: 50px;
+      padding: 12px 24px;
+        border-width: medium;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: bottom;
+            width: 300px;
+    }
+
+    .container .btn1:hover {
+      background-color: black;
+        color: white;
+    }
+    .container .btn2:hover {
+      background-color: black;
+        color: white;
+    }
+    .container .btn3:hover {
+      background-color: black;
+        color: white;
+    }
+</style>
+</head>
+<script>
+    $(container).(function(){
+  $("container").click(function(){
+    $("p").hide();
+  });
+});
+</script>
+
+<body>
+    <div class="container">
+      <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbLWDuI%2FbtriMIIn5p4%2FIEiv6Q6nki0Av6BnW1KBV1%2Fimg.png" alt="Snow" style="width:100%">
+      <button class="btn1"> 한 식 </button>
+        <button class="btn2"> 중 식 </button>
+        <button class="btn3"> 양 식 </button>
+    </div>
+
+</body>
+</html>
