@@ -1,0 +1,49 @@
+<head>
+<meta name="viewport" >
+<style>
+.container {
+  position: relative;
+}
+
+.container img {
+  width: 100%;
+  height: auto;
+}
+
+.container .btn {
+  position: absolute;
+  top: 80%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: bottom;
+}
+
+.container .btn:hover {
+  background-color: orangered;
+}
+</style>
+</head>
+<script>
+    $(container).(function(){
+  $("container").click(function(){
+    $("p").hide();
+  });
+});
+</script>
+
+<body>
+<div class="container">
+  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https://blog.kakaocdn.net/dn/bykisB/btriugLqe57/OnWwvqH4HkF7981PMhJ9KK/img.png" alt="Snow" style="width:100%">
+  <button class="btn"> Let's go!! </button>
+</div>
+
+</body>
+</html>
