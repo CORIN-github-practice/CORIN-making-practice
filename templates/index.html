@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Title</title>
     <script>
+
         $(document).ready(function () {
             listing();
         });
@@ -25,47 +26,107 @@
                 }
             })
         }
+
+       $('#wleft').one( "click", function () {
+			$.Animate('wright', 'fadeOutRightBig');
+			$('#wleft').css({backgroundPosition: 'center center'});
+			$('#wleft').css({'text-align': 'center'});
+			// $('#versus').hide();
+			// $('#wrightn').hide();
+			// $('#lbtn').hide();
+			// $('#wleftn').css({'text-align':'center','padding-right':'0'});
+			$('#wleft').animate({
+				width:'100%',
+				maxWidth:'100%'
+			},500,function(){
+			$.Movepg($('#wleft').attr("name"),$('#wright').attr("name"));
+			});
+		});
+
+       $('#wright').one( "click", function () {
+			$.Animate('wleft', 'fadeOutLeftBig');
+			$('#wright').css({backgroundPosition: 'center center'});
+			$('#wright').css({'text-align': 'center'});
+			// $('#versus').hide();
+			// $('#wleftn').hide();
+			// $('#rbtn').hide();
+			// $('#wrightn').css({'text-align':'center','padding-left':'0'});
+			$('#wright').animate({
+				left:'0',
+				width:'100%',
+				maxWidth:'100%'
+			},500,function(){
+			$.Movepg($('#wright').attr("name"),$('#wleft').attr("name"));
+			});
+		});
+
+        $.Movepg= function(win,lose) {
+		$.ajax({
+			type : "POST",
+			url : "/api/list",
+			data : "u=2t5PMo&p=61752bbe8eb061607155&w=" + win + "&l=" + lose,
+			async: false,
+			success : function(){
+				setTimeout("window.location.replace ('2t5PMo');",800);
+			}
+		});
+	};
     </script>
 
     <style>
         body {
-            background-image: url("https://blog.kakaocdn.net/dn/cbT0NM/btritMKQPFQ/3M0IvW7erASCWGh5l6atk0/img.png");
+            /*background-image: url("https://blog.kakaocdn.net/dn/cbT0NM/btritMKQPFQ/3M0IvW7erASCWGh5l6atk0/img.png");*/
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
+            z-index: 1;
         }
 
         .food {
-            width: 20px;
+           width: auto;
             height: auto;
-            /*background: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMDhfMjU0%2FMDAxNjMzNjY5MjU2MjIx.rO4BKmaHRIp7QcOeI_a0zE8hlMTyfQOlMQzmH6eLRBUg.dLtO23OpeDOEUiXxtvd0xXoM03pAzYvgW_zB6h539tIg.JPEG.smh567958%2F1633669235078.jpg&type=sc960_832") no-repeat;*/
-            /*background-size: contain;*/
-            padding: 0;
-            margin-top: 200px;
-
+            position: absolute;
+            bottom: 20%;
+            left: 5%;
             /*position: absolute;*/
-            /*bottom: 20%;*/
-            /*left: 10%;*/
             /*margin-top: ;*/
+            z-index: 3;
         }
 
         .food2 {
-            position: relative;
-            bottom: 40%;
-            right: 10%;
+             width: auto;
+            height: auto;
+            position: absolute;
+            bottom: 20%;
+            right: 5%;
+            z-index: 2;
         }
     </style>
 
 </head>
 <body>
-<form class="food" action="http://www.naver.com">
-    <input id="food01"
-           type="image"
-           src=""
-           value="음식1">
-</form>
-<form class="food2" action="http://www.daum.net">
-    <input type="button" src="" value="음식2">
-</form>
+<div>
+    <img src="https://blog.kakaocdn.net/dn/cbT0NM/btritMKQPFQ/3M0IvW7erASCWGh5l6atk0/img.png" class="back">
+
+</div>
+<div id="wleft">
+    <button type="button" class="food">
+        <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMDhfMjU0%2FMDAxNjMzNjY5MjU2MjIx.rO4BKmaHRIp7QcOeI_a0zE8hlMTyfQOlMQzmH6eLRBUg.dLtO23OpeDOEUiXxtvd0xXoM03pAzYvgW_zB6h539tIg.JPEG.smh567958%2F1633669235078.jpg&type=sc960_832">
+    </button>
+</div>
+<div id="wright">
+    <button type="button" class="food2"><img
+            src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMDhfMjU0%2FMDAxNjMzNjY5MjU2MjIx.rO4BKmaHRIp7QcOeI_a0zE8hlMTyfQOlMQzmH6eLRBUg.dLtO23OpeDOEUiXxtvd0xXoM03pAzYvgW_zB6h539tIg.JPEG.smh567958%2F1633669235078.jpg&type=sc960_832">
+    </button>
+</div>
+<!--<form class="food" action="http://www.naver.com">-->
+<!--    <input id="food01"-->
+<!--           type="image"-->
+<!--           src=""-->
+<!--           value="음식1">-->
+<!--</form>-->
+<!--<form class="food2" action="http://www.daum.net">-->
+<!--    <input type="button" src="" value="음식2">-->
+<!--</form>-->
 </body>
 </html>
