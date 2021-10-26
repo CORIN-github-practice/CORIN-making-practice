@@ -10,9 +10,12 @@ db = client.dbsparta
 
 # HTML 화면 보여주기
 @app.route('/')
-def home():
-    return render_template('index.html')
+def info():
+    return render_template('page1.html')
 
+@app.route('/page3')
+def home():
+    return render_template('page3.html')
 
 # API 역할을 하는 부분
 # 음식 리스트 가져오기

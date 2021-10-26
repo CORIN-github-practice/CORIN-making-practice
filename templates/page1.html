@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="viewport">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         .container {
             position: relative;
@@ -34,6 +35,25 @@
     </style>
 </head>
 <script>
+    $(document).ready(function () {
+            listing();
+        });
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/api/list",
+                data: {},
+                success: function (response) {
+                        let foods = response['foods'];
+                        for (let i = 0; i < foods.length; i++) {
+                            let img = foods[i]['img'];
+                            //console.log(img)
+                            document.getElementById("food01").src = img;
+                        }
+                }
+            })
+        }
     $(container).(function () {
         $("container").click(function () {
             $("p").hide();
@@ -45,11 +65,14 @@
 <div class="container">
     <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https://blog.kakaocdn.net/dn/bykisB/btriugLqe57/OnWwvqH4HkF7981PMhJ9KK/img.png"
          alt="Snow" style="width:100%">
-    <button class="btn"><a href="page3.html" target="_self">
+    <button class="btn"><a href="/page3" target="_self">
         Let's go!!
     </a></button>
 
 </div>
+
+{% block content %}
+{% endblock %}
 
 </body>
 </html>
