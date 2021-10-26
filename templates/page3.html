@@ -3,6 +3,7 @@
 <head>
 	<title>음식 월드컵</title>
 	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style>
 		body {
             background-image: url("https://blog.kakaocdn.net/dn/cbT0NM/btritMKQPFQ/3M0IvW7erASCWGh5l6atk0/img.png");
@@ -29,8 +30,30 @@
 		}
 
 	</style>
+	<script>
+		$(document).ready(function () {
+            listing();
+        });
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/api/list",
+                data: {},
+                success: function (response) {
+                        let foods = response['foods'];
+                        for (let i = 0; i < foods.length; i++) {
+                            let img = foods[i]['img'];
+                            //console.log(img)
+                            document.getElementById("food01").src = img;
+                        }
+                }
+            })
+        }
+	</script>
 </head>
 <body>
+{% block content %}
 <center>
 	<h1>음식 월드컵</h1>
 	<p id="cal"></p>
@@ -152,5 +175,7 @@
 		document.getElementById('cal').innerHTML=text;
 	</script>
 	</center>
+
+{% endblock %}
 </body>
 </html>
