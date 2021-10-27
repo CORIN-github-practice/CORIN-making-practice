@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>음식 월드컵</title>
+        <title>오늘 점심 뭐 먹지?</title>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
         <style>
             body {
-                background-image: url("https://blog.kakaocdn.net/dn/cbT0NM/btritMKQPFQ/3M0IvW7erASCWGh5l6atk0/img.png");
+                background-image: url("https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcM9Y6T%2Fbtri67fzRLu%2FXFEPkVnVvZVtVGFRQhMHu1%2Fimg.png");
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
@@ -58,9 +59,19 @@
             }
 
             img {
-                width: 300px;
-                height: 300px;
+                margin-top: 250px;
+             margin-left: 180px;
+             margin-right: 180px;
+            width: 450px;
+            height: 450px;
                 display: none;
+            }
+
+            .title{
+                margin-top: 100px;
+            width: 500px;
+            font-size: 50px;
+            font-family: 'Jua', sans-serif;
             }
 
         </style>
@@ -94,7 +105,7 @@
     <body>
     {% block content %}
         <center>
-            <h1>음식 월드컵</h1>
+            <h1 class="title">오늘 점심 뭐 먹지?</h1>
             <p id="cal"></p>
             <img id="image01" class="fade-in-box" onclick="change(0)">
             <img id="image02" class="fade-in-box" onclick="change(1)">
