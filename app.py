@@ -1,3 +1,6 @@
+import requests
+import os
+
 from pymongo import MongoClient
 
 from flask import Flask, render_template, jsonify, request
@@ -23,7 +26,26 @@ def info():
 def home():
     return render_template('page3.html')
 
+# 푸드 food DB에 넣기
+def insert_food():
+    path = 'static/food'
+    food_list = os.listdir(path)
+    for item in food_list:
+        img = path +'/'+ item
+        doc = {
+            'img': img,
+        }
+        db.korfoodlist.insert_one(doc)
 
+# 기존 korfoodlist 콜렉션을 삭제하고, 새로 DB에 저장합니다.
+def insert_all():
+    db.korfoodlist.drop()  # korfoodlist 콜렉션을 모두 지워줍니다.
+
+    insert_food()
+
+
+# 실행하기
+insert_all()
 
 
 if __name__ == '__main__':
