@@ -34,32 +34,6 @@
         }
     </style>
 </head>
-<script>
-    $(document).ready(function () {
-            listing();
-        });
-
-        function listing() {
-            $.ajax({
-                type: "GET",
-                url: "/api/list",
-                data: {},
-                success: function (response) {
-                        let foods = response['foods'];
-                        for (let i = 0; i < foods.length; i++) {
-                            let img = foods[i]['img'];
-                            //console.log(img)
-                            document.getElementById("food01").src = img;
-                        }
-                }
-            })
-        }
-    $(container).(function () {
-        $("container").click(function () {
-            $("p").hide();
-        });
-    });
-</script>
 
 <body>
 <div class="container">
