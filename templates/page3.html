@@ -1,109 +1,158 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>음식 월드컵</title>
-    <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style>
-        body {
-            background-image: url("https://blog.kakaocdn.net/dn/cbT0NM/btritMKQPFQ/3M0IvW7erASCWGh5l6atk0/img.png");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
+    <head>
+        <title>음식 월드컵</title>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            body {
+                background-image: url("https://blog.kakaocdn.net/dn/cbT0NM/btritMKQPFQ/3M0IvW7erASCWGh5l6atk0/img.png");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
 
-        img {
-            width: 300px;
-            height: 300px;
-        }
+            .fade-in-box {
+                display: inline-block;
+                padding: 10px;
+                animation: fadein 3s;
+                -moz-animation: fadein 3s; /* Firefox */
+                -webkit-animation: fadein 3s; /* Safari and Chrome */
+                -o-animation: fadein 3s; /* Opera */
+            }
 
-    </style>
-    <script>
-        $(document).ready(function () {
-            getImages();
-        });
-
-        function getImages() {
-            $.ajax({
-                type: "GET",
-                url: "/api/list",
-                asyc: false,
-                data: {},
-                success: function (response) {
-                    let foods = response['foods'];
-                    for (i = 0; i < foods.length; i++) {
-                        let img = foods[i]['img'];
-                        images[i] = img;
-                    }
-                    document.getElementById('image01').src = images[num];
-                    document.getElementById('image02').src = images[num + 1];
+            @keyframes fadein {
+                from {
+                    opacity: 0;
                 }
-            })
-        }
-    </script>
-</head>
-<body>
-{% block content %}
-<center>
-    <h1>음식 월드컵</h1>
-    <p id="cal"></p>
-    <img id="image01" onclick="change(0)">
-    <img id="image02" onclick="change(1)">
-    <script>
-        text = "";
-        var images = [];
-        var sImages = [];
-
-        var cnt = 0;
-        var num = 0;
-        var sNum = 0;
-        var cnt2 = 0;
-
-        function show() {
-            images.sort(function (a, b) {
-                return 0.5 - Math.random()
-            });
-            showImg(num);
-        }
-
-        show(0);
-
-        function showImg(num) {
-            document.getElementById('image01').src = images[num];
-            document.getElementById('image02').src = images[num + 1];
-            cnt2++;
-        }
-
-        function change(n) {
-            if (cnt2 < 20) {
-                cnt++;
-                if (n == 0)
-                    sImages[sNum++] = images[num];
-                else
-                    sImages[sNum++] = images[num + 1];
-                num += 2;
-
-                showImg(num);
-
-                if (cnt == images.length / 2) {
-                    for (i = 0; i < sImages.length; i++) {
-                        images[i] = sImages[i];
-                        sImages[i] = null;
-                    }
-                    images.splice(cnt);
-                    if (cnt == 1)
-                        document.getElementById("image02").style.display = 'none';
-                    cnt = 0;
-                    num = 0;
-                    sNum = 0;
-                    showImg(num);
+                to {
+                    opacity: 2;
                 }
             }
-        }
 
-        document.getElementById('cal').innerHTML = text;
-    </script>
-</center>
-{% endblock %}
-</body>
+            @-moz-keyframes fadein { /* Firefox */
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 2;
+                }
+            }
+
+            @-webkit-keyframes fadein { /* Safari and Chrome */
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 2;
+                }
+            }
+
+            @-o-keyframes fadein { /* Opera */
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 2;
+                }
+            }
+
+            img {
+                width: 300px;
+                height: 300px;
+                display: none;
+            }
+
+        </style>
+        <script>
+            $(document).ready(function () {
+                getImages();
+            });
+
+            function getImages() {
+                console.log('getImages')
+                $.ajax({
+                    type: "GET",
+                    url: "/api/list",
+                    asyc: false,
+                    data: {},
+                    success: function (response) {
+                        let foods = response['foods'];
+                        console.log(foods.length)
+                        for (i = 0; i < foods.length; i++) {
+                            let img = foods[i]['img'];
+                            images[i] = img;
+                        }
+                        document.getElementById('image01').src = images[num];
+                        document.getElementById('image02').src = images[num + 1];
+                    }
+                })
+            }
+        </script>
+    </head>
+
+    <body>
+    {% block content %}
+        <center>
+            <h1>음식 월드컵</h1>
+            <p id="cal"></p>
+            <img id="image01" class="fade-in-box" onclick="change(0)">
+            <img id="image02" class="fade-in-box" onclick="change(1)">
+            <script>
+                text = "";
+                var images = [];
+                var sImages = [];
+
+                var cnt = 0;
+                var num = 0;
+                var sNum = 0;
+                var cnt2 = 0;
+
+                function show() {
+                    images.sort(function (a, b) {
+                        return 0.5 - Math.random()
+                    });
+                    showImg(num);
+                }
+
+                show(0);
+
+                function showImg(num) {
+                    document.getElementById('image01').src = images[num];
+                    document.getElementById('image02').src = images[num + 1];
+                    cnt2++;
+                }
+
+                function change(n) {
+                    if (cnt2 < 40) {
+                        cnt++;
+                        if (n == 0)
+                            sImages[sNum++] = images[num];
+                        else
+                            sImages[sNum++] = images[num + 1];
+                        num += 2;
+
+                        showImg(num);
+
+                        if (cnt == images.length / 2) {
+                            for (i = 0; i < sImages.length; i++) {
+                                images[i] = sImages[i];
+                                sImages[i] = null;
+                            }
+                            images.splice(cnt);
+                            if (cnt == 1)
+                                document.getElementById("image02").style.display = 'none';
+                            cnt = 0;
+                            num = 0;
+                            sNum = 0;
+                            showImg(num);
+                        }
+                    }
+                }
+
+                document.getElementById('cal').innerHTML = text;
+            </script>
+        </center>
+    {% endblock %}
+    </body>
 </html>
